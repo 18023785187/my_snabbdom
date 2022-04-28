@@ -4,6 +4,7 @@ import { propsModule } from './modules/props'
 import { attributesModule } from './modules/attributes'
 import { datasetModule } from './modules/dataset'
 import { eventlistenersModule } from './modules/eventListeners'
+import { thunk } from './thunk'
 
 const patch = init([
   attributesModule,
@@ -15,7 +16,7 @@ const patch = init([
 const container = document.getElementById("container")!
 
 const on = {
-  click: [(a: any, b: any) => {console.log(a, b)}]
+  click: [(a: any, b: any) => { console.log(a, b) }]
 }
 
 const vnode = h("div#container.two.classes",
@@ -27,6 +28,17 @@ const vnode = h("div#container.two.classes",
 )
 // 传入一个空的元素节点 - 将产生副作用（修改该节点）
 patch(container, vnode);
+
+const t = thunk('div.class', function numberView(n) {
+  return h("num", [
+    "Number is: " + n,
+    h('div', '66666')
+  ]);
+}, [1])
+
+console.log(t)
+
+patch(vnode, t);
 
 // on.click = []
 

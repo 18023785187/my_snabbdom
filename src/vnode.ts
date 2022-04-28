@@ -27,6 +27,8 @@ export interface VNodeData {
   hook?: Hooks // 生命周期钩子
   key?: Key // 元素唯一标识
   ns?: string // 针对 svg 标签的命名空间
+  fn?: () => VNode // thunk 的生成函数
+  args?: any[] // thunk 的生成函数的参数
   is?: string // TODO: 暂时不知道他的用法
   [key: string]: any // 第三方模块扩展
 }
