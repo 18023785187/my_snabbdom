@@ -182,10 +182,10 @@ export function init(
   }
 
   /**
-   * 根据 VNode 创建真实 DOM，并绑定在 VNode.elm 上并返回 Node。
+   * 根据 VNode 创建真实 DOM，并绑定在 VNode.elm 上，返回 Node。
    * 
    * createElm 会根据以下情况创建节点：
-   *  1、当 sel 为 !时，此时 VNode 为注释节点，创建注释节点。
+   *  1、当 sel 为 ! 时，此时 VNode 为注释节点，创建注释节点。
    *  2、当 sel 不为 undefined 时，此时 VNode 为 DOM 节点，创建 DOM 节点：
    *    i、当 children 为数组时，递归创建 Elm 并添加到父节点中。
    *    ii、当 children 不为数组时，根据 text 创建文本节点并添加到父节点中。
@@ -638,7 +638,7 @@ export function init(
       oldVnode = emptyDocumentFragmentAt(oldVnode)
     }
 
-    if (sameVnode(oldVnode, vnode)) { // 如果对比的节点为同一节点，启用 diff 算法对比
+    if (sameVnode(oldVnode, vnode)) { // 如果对比的节点为同一节点，执行 patchVnode 对比
       patchVnode(oldVnode, vnode, insertedVnodeQueue)
     } else { // 如果不是同一节点，则把新节点插入，老节点移除
       elm = oldVnode.elm!

@@ -15,6 +15,11 @@ export interface ThunkFn { // 声明 Thunk 方法的类型
   (sel: string, key: any, fn: (...args: any[]) => any, args: any[]): Thunk
 }
 
+/**
+ * 把 vnode 的各项属性复制到 thunk 中
+ * @param vnode VNode
+ * @param thunk VNode
+ */
 function copyToThunk(vnode: VNode, thunk: VNode): void {
   const ns = thunk.data?.ns;
   (vnode.data as VNodeData).fn = (thunk.data as VNodeData).fn;
@@ -26,12 +31,22 @@ function copyToThunk(vnode: VNode, thunk: VNode): void {
   if (ns) addNS(thunk.data, thunk.children, thunk.sel)
 }
 
+/**
+ * 
+ * @param thunk VNode
+ */
 function init(thunk: VNode): void {
   const cur = thunk.data as VNodeData
   const vnode = (cur.fn as any)(...cur.args!)
   copyToThunk(vnode, thunk)
 }
 
+/**
+ * 
+ * @param oldVnode VNode
+ * @param thunk VNode
+ * @returns 
+ */
 function prepatch(oldVnode: VNode, thunk: VNode): void {
   let i: number
   const old = oldVnode.data as VNodeData
@@ -52,11 +67,10 @@ function prepatch(oldVnode: VNode, thunk: VNode): void {
 
 /**
  * 
- * 
  * @param sel sel为 selector 的意思，意为 DOM 选择器
- * @param key 属性，对 VNode 的扩展
- * @param fn vnode 的子节点，可以为 vnode 数组或 string 数组或 undefined，分别表示 dom 节点、文本节点、无节点
- * @param args 文本节点
+ * @param key VNode 的唯一标识
+ * @param fn 渲染函数，参数为 args 数组解构，应返回 VNode
+ * @param args fn 的参数
  * @returns VNode as ThunkFn
  */
 export const thunk = function thunk(
