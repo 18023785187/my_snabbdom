@@ -1,12 +1,11 @@
 const path = require('path')
 
 module.exports = {
-  entry: path.resolve('./', 'src/index.ts'),
   output: {
     path: path.resolve('./', 'build'),
-    filename: 'snabbdom.js',
+    filename: '[name].js',
     library: 'snabbdom',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   module: {
     rules: [

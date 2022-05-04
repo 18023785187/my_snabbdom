@@ -2,7 +2,7 @@ import { vnode, VNode, VNodeData } from './vnode'
 import * as is from './is'
 
 export type VNodes = VNode[]
-export type VNodeChildrenElement = // VNode 的子元素可以是一些这些类型
+export type VNodeChildElement = // VNode 的子元素可以是一些这些类型
   | VNode
   | string
   | number
@@ -10,8 +10,8 @@ export type VNodeChildrenElement = // VNode 的子元素可以是一些这些类
   | Number
   | undefined
   | null
-export type ArrayOfElement<T> = T | T[]
-export type VNodeChildren = ArrayOfElement<VNodeChildrenElement> // VNodeChildren 可以是单个 VNode 或 VNode 数组
+export type ArrayOrElement<T> = T | T[]
+export type VNodeChildren = ArrayOrElement<VNodeChildElement> // VNodeChildren 可以是单个 VNode 或 VNode 数组
 
 /**
  * 为 svg 元素添加命名空间 http://www.w3.org/2000/svg

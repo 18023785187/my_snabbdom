@@ -7,6 +7,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = merge(commonConfig, {
     mode: "development",
     devtool: "source-map",
+    entry: {
+      'snabbdom': path.resolve('./', 'src/index.ts'),
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve('./', 'public/index.html'),

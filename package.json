@@ -10,12 +10,15 @@
     "dev": "cross-env NODE_ENV=development webpack serve --config scripts/start.js",
     "start": "npm run dev"
   },
-  "keywords": ["snabbdom"],
+  "keywords": [
+    "snabbdom"
+  ],
   "author": "hym20000418",
   "license": "ISC",
   "devDependencies": {
     "cross-env": "^7.0.3",
     "html-webpack-plugin": "^5.5.0",
+    "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.2.8",
     "typescript": "^4.6.3",
     "webpack": "^5.72.0",
